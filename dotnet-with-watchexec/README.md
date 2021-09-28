@@ -5,10 +5,7 @@ Copied from [paketo-buildpacks/samples](https://github.com/paketo-buildpacks/sam
 ## Building with Watchexec
 
 ```bash
-pack build dotnet-watchexec --buildpack gcr.io/paketo-buildpacks/watchexec \
-                            --buildpack gcr.io/paketo-buildpacks/dotnet-core \
-                            --buildpack gcr.io/paketo-community/build-plan
-```
+pack build dotnet-watchexec --descriptor project.toml```
 
 ## Running
 
