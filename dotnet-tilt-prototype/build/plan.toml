@@ -1,6 +1,0 @@
-[[requires]]
-  name = "watchexec"
-
-  [requires.metadata]
-    launch = true
-
