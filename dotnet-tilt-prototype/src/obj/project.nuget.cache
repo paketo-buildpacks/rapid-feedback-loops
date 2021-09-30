@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "aLnH8DFTT4F/w8PhumBJsRx0ssbyaw8S9IJ4pMJpPfEa+Wmak9bGixhu9Q0s7c0N1+ZZRBuNPaNqEA+SP1xXqA==",
+  "success": true,
+  "projectFilePath": "/Users/pivotal/workspace/paketo-buildpacks/rapid-feedback-loops/dotnet-tilt-prototype/src/aspnet.csproj",
+  "expectedPackageFiles": [
+    "/Users/pivotal/.nuget/packages/microsoft.netcore.app.host.linux-x64/3.1.18/microsoft.netcore.app.host.linux-x64.3.1.18.nupkg.sha512"
+  ],
+  "logs": []
+}
