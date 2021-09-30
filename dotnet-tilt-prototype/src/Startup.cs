@@ -35,7 +35,7 @@ namespace aspnet
                     await context.Response.WriteAsync(@"<!DOCTYPE html>
 <html>
   <head>
-    <title>Powered By Paketo + Watchexec</title>
+    <title>Powered By Paketo Buildpacks</title>
   </head>
   <body>
     <img style=""display: block; margin-left: auto; margin-right: auto; width: 50%;"" src=""https://static.wikia.nocookie.net/shingekinokyojin/images/b/b1/Levi_Ackermann_%28Anime%29_character_image.png/revision/latest?cb=20210124211652""></img>
