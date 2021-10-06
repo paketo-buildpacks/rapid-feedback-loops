@@ -1,0 +1,20 @@
+apiVersion: kpack.io/v1alpha1
+kind: Builder
+metadata:
+  name: my-builder
+spec:
+  tag: gcr.io/dap-local-workstation/kpack-builder
+  serviceAccount: default
+  stack:
+    name: bionic-stack
+    kind: ClusterStack
+  store:
+    name: sample-cluster-store
+    kind: ClusterStore
+  order:
+  - group:
+    - id: paketo-buildpacks/watchexec
+  - group:
+    - id: paketo-buildpacks/dotnet-core
+  - group:
+    - id: paketo-community/build-plan

@@ -1,1 +1,0 @@
-web: watchexec --verbose --restart --watch /layers/paketo-buildpacks_go-build/targets/bin/mod --watch /workspace --ignore /workspace/src '/layers/paketo-buildpacks_go-build/targets/bin/mod'
