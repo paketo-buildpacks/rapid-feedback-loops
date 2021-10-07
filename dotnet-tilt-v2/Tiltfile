@@ -14,7 +14,7 @@ pack('dotnet-prototype-image', buildpacks=[
                                 "gcr.io/paketo-buildpacks/dotnet-core-aspnet",
                                 "gcr.io/paketo-buildpacks/dotnet-core-sdk",
                                 "gcr.io/paketo-buildpacks/dotnet-publish",
-                                "~/workspace/paketo-buildpacks/dotnet-execute/build/buildpackage.cnb",
+                                "./.buildpackage/dotnet-execute.cnb",
                                 ],
                                 builder="paketobuildpacks/builder:buildpackless-base",
                                 env_vars=['BP_DOTNET_PROJECT_PATH="./src"', 'BP_LIVE_RELOAD_ENABLED=true'],
