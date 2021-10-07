@@ -1,7 +1,7 @@
 load('ext://pack', 'pack')
 
 # (Re)build locally with local resource
-local_resource('go-build', cmd='GOOS=linux GOARCH=amd64 go build -o ./out/ -buildmode pie . && cp ./out/mod ./build/mod', deps=['main.go', 'go.mod', 'go.sum'])
+local_resource('go-build', cmd='GOOS=linux GOARCH=amd64 go build -o ./build/ -buildmode pie .', deps=['main.go', 'go.mod', 'go.sum'])
 
 # spec for containers on k8s
 k8s_yaml('deploy/deployment.yaml')
