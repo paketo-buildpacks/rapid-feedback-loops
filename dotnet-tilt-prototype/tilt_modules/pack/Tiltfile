@@ -32,6 +32,8 @@ def pack(
       "--builder " + builder,
       " ".join(["--buildpack " + s for s in buildpacks]),
       " ".join(["--env " + s for s in env_vars]),
+      "--verbose",
+      "--clear-cache",
     ])
 
     docker_tag_cmd = " ".join([
