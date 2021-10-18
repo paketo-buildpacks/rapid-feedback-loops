@@ -22,9 +22,20 @@ docker run --name dotnet-watchexec-container \
 `curl http://localhost:8080`
 
 ## Test Server Restart
-Since `watchexec` is watching all of the `/workspace` directory, it will restart the server when an empty file is copied into `/workspace`
+Since `watchexec` is watching all of the `/workspace` directory, it will
+restart the server when an empty file is copied into `/workspace`
 
 ```bash
 touch hello.txt
 docker cp ./hello.txt  dotnet-watchexec-container:/workspace/hello.txt
 ```
+
+## Rebuild the app locally (before copying into container)
+With the .NET SDK installed on your local workstation, run
+```bash
+dotnet publish --configuration Release --runtime ubuntu.18.04-x64 --self-contained false --output ./build
+```
+
+This will cross-compile the binary for linux in the same way it happens in the
+build container. The output will be dumped in `./build`, which can then be
+copied into the container.
