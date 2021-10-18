@@ -39,3 +39,20 @@ dotnet publish --configuration Release --runtime ubuntu.18.04-x64 --self-contain
 This will cross-compile the binary for linux in the same way it happens in the
 build container. The output will be dumped in `./build`, which can then be
 copied into the container.
+
+```bash
+docker cp ./build/ dotnet-watchexec-container:/build
+```
+`docker cp` does not currently support copying multiple files at once.
+Therefore, it is necessary to run the following command to copy the content of build
+into the workspace.
+
+```bash
+docker exec -it dotnet-watchexec-container sh -c "cp "/build/*" /workspace"
+```
+
+# NOTES
+
+* Given that the start command currently set by the dotnet-execute buildpack
+  requires shell variable expansion, running watchexec with the --no-shell
+  option fails.
