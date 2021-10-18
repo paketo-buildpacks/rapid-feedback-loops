@@ -1,17 +1,18 @@
 load('ext://pack', 'pack')
 
 # (Re)build locally with local resource
-local_resource('dotnet-publish', cmd='rm -rf ./build && dotnet publish --configuration Release --runtime ubuntu.18.04-x64 --self-contained false --output ./build', deps=['*.cs', '*.json', 'aspnet.csproj', 'Properties'])
+local_resource('dotnet-publish', cmd='rm -rf ./build && dotnet publish src --configuration Release --runtime ubuntu.18.04-x64 --self-contained false --output ./build && cp ./plan.toml ./src/Procfile ./build', deps=['src'], ignore=['src/obj'])
 
 # spec for containers on k8s
 k8s_yaml('deploy/deployment.yaml')
 k8s_resource('dotnet-prototype', port_forwards='8080:80', resource_deps=['dotnet-publish'])
 
-pack('dotnet-prototype-image', buildpacks=[
+pack('dotnet-prototype-image', path='./build', buildpacks=[
                                 "gcr.io/paketo-buildpacks/watchexec",
                                 "gcr.io/paketo-buildpacks/dotnet-core",
                                 "gcr.io/paketo-community/build-plan"
-                                ], live_update=[
+                                ],
+                                live_update=[
                                 sync('./build', '/workspace/build'),
                                 run('cp /workspace/build/* /workspace/', trigger='./build')
                                 ])
