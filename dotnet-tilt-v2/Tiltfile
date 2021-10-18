@@ -8,13 +8,7 @@ k8s_yaml('deploy/deployment.yaml')
 k8s_resource('dotnet-prototype', port_forwards='8080', resource_deps=['dotnet-publish'])
 
 pack('dotnet-prototype-image', buildpacks=[
-                                "gcr.io/paketo-buildpacks/watchexec",
-                                "gcr.io/paketo-buildpacks/icu",
-                                "gcr.io/paketo-buildpacks/dotnet-core-runtime",
-                                "gcr.io/paketo-buildpacks/dotnet-core-aspnet",
-                                "gcr.io/paketo-buildpacks/dotnet-core-sdk",
-                                "gcr.io/paketo-buildpacks/dotnet-publish",
-                                "./.buildpackage/dotnet-execute.cnb",
+                                "paketobuildpacks/dotnet-core:latest",
                                 ],
                                 builder="paketobuildpacks/builder:buildpackless-base",
                                 env_vars=['BP_DOTNET_PROJECT_PATH="./src"', 'BP_LIVE_RELOAD_ENABLED=true'],
