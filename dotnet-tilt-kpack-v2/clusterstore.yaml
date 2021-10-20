@@ -1,0 +1,13 @@
+apiVersion: kpack.io/v1alpha1
+kind: ClusterStore
+metadata:
+  name: sample-cluster-store
+spec:
+  sources:
+  - image: gcr.io/paketo-buildpacks/watchexec
+  - image: gcr.io/paketo-buildpacks/icu
+  - image: gcr.io/paketo-buildpacks/dotnet-core
+  - image: gcr.io/paketo-buildpacks/dotnet-core-runtime
+  - image: gcr.io/paketo-buildpacks/dotnet-core-aspnet
+  - image: gcr.io/paketo-buildpacks/dotnet-core-sdk
+  - image: gcr.io/paketo-buildpacks/dotnet-publish

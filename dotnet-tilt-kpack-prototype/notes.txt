@@ -1,0 +1,17 @@
+needed dotnet and kp cli
+did not work on kind
+tried it on minikube, ran into this issue
+- https://github.com/tilt-dev/tilt/issues/3079
+- didn't work either way so created a GKE cluster and used that
+have to set up secret "registry-credentials" and modify default SA to use it
+
+custom_build does a full deploy first, and then watches the deps for
+future changes. When one of those deps is also specified in the live
+update field, it does not do a full build again - it just syncs those
+changes.
+
+-----
+kubectl apply -f https://github.com/pivotal/kpack/releases/download/v0.3.1/release-0.3.1.yaml
+kc secret docker-registry registry-credentials --docker-server gcr.io --docker-username _json_key --docker-password="$(cat ~/Downloads/dap-local-workstation-e5fb38d285a8.json)" --docker-email=hnandiwada@vmware.com
+
+

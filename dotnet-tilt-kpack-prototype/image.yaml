@@ -1,0 +1,20 @@
+apiVersion: kpack.io/v1alpha1
+kind: Image
+metadata:
+  name: dotnet-prototype-image
+  namespace: default
+spec:
+  build:
+    env:
+    - name: BP_DOTNET_PROJECT_PATH
+      value: ./src
+    resources: {}
+  builder:
+    kind: Builder
+    name: my-builder
+    namespace: default
+  serviceAccount: default
+  source:
+    registry:
+      image: harbor-repo.vmware.com/tanzu_desktop/dotnet-prototype-image-source@sha256:b3d616c06d48b9b7fa142dc1fcfaaf77e970657f50a4892d07fd18165af53430
+  tag: harbor-repo.vmware.com/tanzu_desktop/dotnet-prototype-image
