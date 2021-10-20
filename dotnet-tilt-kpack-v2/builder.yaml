@@ -13,10 +13,4 @@ spec:
     kind: ClusterStore
   order:
   - group:
-    - id: paketo-buildpacks/watchexec
-    - id: paketo-buildpacks/icu
     - id: paketo-buildpacks/dotnet-core
-    - id: paketo-buildpacks/dotnet-core-runtime
-    - id: paketo-buildpacks/dotnet-core-aspnet
-    - id: paketo-buildpacks/dotnet-core-sdk
-    - id: paketo-buildpacks/dotnet-publish
