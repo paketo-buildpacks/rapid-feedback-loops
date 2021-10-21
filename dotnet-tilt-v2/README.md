@@ -1,9 +1,7 @@
 # Prototype: .NET, Tilt + Paketo Buildpacks w/ Hot Reload
 
 This sample app shows how a simple ASP.NET project can work with the watchexec
-buildpack and Tilt. It uses a modified version of the dotnet-execute buildpack
-(stored in `.buildpackage/dotnet-execute.cnb`) that sets a start command using
-`watchexec`.
+buildpack and Tilt.
 
 ## Setting up
 ### Prerequisites
