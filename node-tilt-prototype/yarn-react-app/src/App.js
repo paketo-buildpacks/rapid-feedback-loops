@@ -11,3 +11,5 @@ function App() {
 }
 
 export default App;
+
+// Replace the src value on line 7 with: "https://paketo.io/v2/images/buildpack-equation.svg" and save this file.

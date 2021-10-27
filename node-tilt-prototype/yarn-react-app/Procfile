@@ -1,0 +1,1 @@
+web: watchexec --verbose --restart --ignore /workspace/node_modules/.cache --watch /workspace 'react-scripts start'
