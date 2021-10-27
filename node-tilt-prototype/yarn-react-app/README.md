@@ -13,9 +13,12 @@ Run `tilt up` from this directory to stand up the deployment.
 Make code changes in any file within the `src` directory. A modification has
 been set up for you in `src/App.js` already. 
 
-Try adding the `chalk` package to the project using Yarn. Run `yarn add chalk
---modules-folder <path/to/dir/outside/of/app/dir>`. The section below may
-explain any strange behaviour that occurs.
+Try adding the `react-icons` package to the project using Yarn. Run `yarn add
+react-icons --modules-folder <path/to/dir/outside/of/app/dir>`. You should see
+the `yarn install` process begin within the Tilt dashboard. Once the process is
+complete, first uncomment the code in `src/question.js` then uncomment the
+`Question` component in index.js. Finally, refresh the webpage and scroll to
+the bottom of the page to see your new component!
 
 ## Limitations 
 
@@ -48,7 +51,11 @@ Currently, implementing this via the Tiltfile presents some challenges:
   package.json and/or yarn.lock. This creates a sort of race condition between
   the restarting watchexec process and, for example, a `yarn install` command
   which is regenerating node_modules often resulting in the application
-  crashing and a full rebuild. 
+  crashing and a full rebuild. This can be resolved by configuring watchexec to
+  ignore package management artifacts (i.e. package.json, yarn.lock,
+  node_modules, etc.). Tilt may still run `yarn install` on changes to
+  package.json/yarn.lock, but the application process will not be restarted
+  until code changes are made, avoiding any potential clashes.
 
 ## Recommendations
 
@@ -59,9 +66,9 @@ Currently, implementing this via the Tiltfile presents some challenges:
 - The watchexec start command should be configured such that it restarts the
   given process whenever files in the workspace are changed.
 
-- The watchexec start command should be configured such that it ignores file
-  modification events which occur within the `node_modules/.cache` so that web
-  frameworks which modify the cache on-the-fly (e.g. React, Vue) do not trigger
-  a restart. 
+- The watchexec start command should be configured such that it ignores changes
+  to package.json, yarn.lock & `node_modules/` so that Yarn processes which
+  modify dependency management files or web frameworks which modify the
+  node_modules cache on-the-fly (e.g. React, Vue) do not trigger a restart. 
 
 

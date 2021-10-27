@@ -27,5 +27,11 @@ app.get('/', (request, response) => {
 //   </body>
 // </html>`);
 // });
+//
 
 app.listen(port);
+
+
+ // Uncomment the code below ONLY after you have added `chalk` to the project
+const chalk = require('chalk');
+console.log(chalk.blue("HELLO WORLD!"));
