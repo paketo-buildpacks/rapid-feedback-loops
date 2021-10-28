@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/gorilla/mux"
 )
@@ -39,7 +40,7 @@ func main() {
 	})
 
 	/* Uncommenting the line below will demo a file change that results in a new package import. */
-	// fmt.Println(strings.Join([]string{"Hello", "developer"}, ", "))
+	fmt.Println(strings.Join([]string{"Hello", "developer"}, ", "))
 
 	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
 }
