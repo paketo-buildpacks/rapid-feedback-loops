@@ -1,0 +1,33 @@
+allow_k8s_contexts('gke_dap-local-workstation_us-central1-c_cluster-1')
+
+k8s_yaml('sa.yaml')
+k8s_yaml('clusterstack.yaml')
+k8s_yaml('clusterstore.yaml')
+k8s_yaml('builder.yaml')
+
+local_resource('dotnet-publish', cmd='rm -rf ./build \
+              && dotnet publish src \
+              --configuration Release \
+              --runtime ubuntu.18.04-x64 \
+              --self-contained false \
+              --output ./build', \
+              deps=['src'], ignore=['src/obj', 'src/bin'])
+
+custom_build('gcr.io/dap-local-workstation/dotnet-prototype-image',
+              'kp image save dotnet-prototype-image \
+               --tag $EXPECTED_REF \
+               --local-path . \
+               --env BP_DOTNET_PROJECT_PATH=./src \
+               --builder my-builder \
+               --wait',
+               deps=['./build'],
+               live_update=[
+                 sync('./build', '/workspace/build'),
+                 run('cp /workspace/build/* /workspace/', trigger='./build')
+               ],
+               skips_local_docker=True,
+              )
+
+# spec for containers on k8s
+k8s_yaml('deploy/deployment.yaml')
+k8s_resource('dotnet-prototype', port_forwards='8080:8080', resource_deps=['dotnet-publish'])
